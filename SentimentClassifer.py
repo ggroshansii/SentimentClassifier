@@ -15,15 +15,15 @@ for i in posWords:
         print(i)
 '''
 def strip_punctuation(str): 
-    filteredLetters = [];
-    newSentence = " ".join(filteredLetters)
+    filteredLetters = []
+    newSentence = ""
     #split string into list of words
     splitLine = str.split()
     #iterate list of words
     for i in splitLine:
         #check to see if list is empty, if not then add space (between words)
         if filteredLetters:
-            filteredLetters.append(" ");
+            filteredLetters.append(" ")
         #split word in to list of letters
         splitLetters = list(i)
         #iterate through that list of letters
@@ -32,9 +32,9 @@ def strip_punctuation(str):
                 continue
             else:
                 filteredLetters.append(i)
-    return newSentence
+    return "".join(filteredLetters)
 
-    '''for i in splitStr:
+'''for i in splitStr:
         if i in punctuation_chars:'''
 
 str = "hey what's going on y'all??"

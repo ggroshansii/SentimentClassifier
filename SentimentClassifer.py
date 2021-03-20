@@ -3,6 +3,7 @@
 punctuation_chars = ["'", '"', ",", ".", "!", ":", ";", '#', '@']
 
 twitterData = open('files/project_twitter_data.csv', 'r')
+scoreResults = open('files/resulting_data.csv', 'w+')
 posWords = open('files/positive_words.txt', 'r')
 negWords = open('files/negative_words.txt', 'r')
 
@@ -47,6 +48,7 @@ def get_pos(str):
             posCount = posCount + 1
     return posCount
 
+
 def get_neg(str):
     negCount = 0
     strippedStr = strip_punctuation(str)
@@ -57,3 +59,18 @@ def get_neg(str):
     return negCount
 
 
+scoreResults.write("Number of Retweets, Number of Replies, Positive Score, Negative Score, Net Score\n")
+
+for line in twitterData.readlines():
+
+    header = 'tweet_text,retweet_count,reply_count'
+
+    if line.strip() == header.strip():
+        continue
+    else:
+        splitData = line.split(",")
+        posScore = get_pos(splitData[0])
+        negScore = get_neg(splitData[0])
+        totalScore = int(posScore) - int(negScore)
+        parameter = str(splitData[1]) + "," + str(splitData[2].strip()) + "," + str(posScore) + "," + str(negScore) + "," + str(totalScore) + "\n"
+        scoreResults.write(parameter)

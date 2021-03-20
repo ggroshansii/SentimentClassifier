@@ -38,6 +38,15 @@ def strip_punctuation(str):
     return "".join(filteredLetters)
 
 
+def get_pos(str):
+    posCount = 0
+    strippedStr = strip_punctuation(str)
+    splitLine = strippedStr.split()
+    for i in splitLine:
+        if i.lower() in positive_words:
+            posCount = posCount + 1
+    return posCount
+
 def get_neg(str):
     negCount = 0
     strippedStr = strip_punctuation(str)
@@ -46,4 +55,5 @@ def get_neg(str):
         if i.lower() in negative_words:
             negCount = negCount + 1
     return negCount
+
 
